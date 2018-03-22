@@ -16,7 +16,7 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'fonts/iconic/css/material-design-iconic-font.min.css' %}">
   <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
-<!--===============================================================================================-->	
+<!--===========82@Sg2%L@*IoG4A^KFTB2Pc$zEGQId====================================================================================-->	
 	<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animsition/css/animsition.min.css' %}">
@@ -38,31 +38,25 @@
 					<span class="login100-form-title p-b-26">
 						Welcome
 					</span>
-					<span class="login100-form-title p-b-48">
-						<i class="zmdi zmdi-font"></i>
-					</span>
+					<!-- <span class="login100-form-title p-b-48">
+						   <i class="zmdi zmdi-font"></i>
+					     </span>
+          -->
+          <div class="card-body">
+          {% if not request.user.is_authenticated %}
 
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
-						<input class="input100" type="text" name="email">
-						<span class="focus-input100" data-placeholder="Email"></span>
-					</div>
-
-					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						  <span class="btn-show-pass">
-							<i class="zmdi zmdi-eye"></i>
-						</span>
-						<input class="input100" type="password" name="pass">
-						<span class="focus-input100" data-placeholder="Password"></span>
-					</div>
-
-					<div class="container-login100-form-btn">
-						<div class="wrap-login100-form-btn">
-							<div class="login100-form-bgbtn"></div>
-							<button class="login100-form-btn">
-								Login
-							</button>
-						</div>
-					</div>
+              <form method="post" style="margin-left:20em; action="/">
+                  {% csrf_token %}
+                  {{ form.as_p }}
+                  <button type="submit">Login</button>
+                  </form>  
+                  {% else %}
+                  <div class="alert alert-info">
+                      <strong>Hmm... </strong> it looks like you are already logged in, click <b><a href="/dashboard">here</a></b> to go the the dashboard.  
+                      </div>
+                      
+                      {% endif %}
+          </div>
 
 					<div class="text-center p-t-115">
 						<span class="txt1">
@@ -78,20 +72,6 @@
 		</div>
 	</div>
 	
-
-  {% if form.errors %}
-  <p class="error">Sorry, that's not a valid username or password</p>
-  {% endif %}
-
-  <form action="" method="post">
-  <label for="username">User name:</label>
-  <input type="text" name="username" value="" id="username">
-  <label for="password">Password:</label>
-  <input type="password" name="password" value="" id="password">
-
-  <input type="submit" value="login" />
-  <input type="hidden" name="next" value="{{ next|escape }}" />
-  </form>
 
 	<div id="dropDownSelect1"></div>
 	
