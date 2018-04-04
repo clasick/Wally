@@ -258,12 +258,14 @@
                              </ul>
                              </li> -->
                         <li class="nav-label">Dashboard</li>
+                        {% if user.is_authenticated %}
                         <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">My Account<span class="label label-rouded label-primary pull-right">2</span></span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="{% url 'pay:account' %}">Account </a></li>
                                 <li><a href="{% url 'pay:transfer' %}">Transfer</a></li>
                             </ul>
                         </li>
+                        {% endif %}
 
                         <!-- <li class="nav-label">Apps</li>
                              <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Email</span></a>
@@ -381,7 +383,7 @@
             <!-- Bread crumb -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-primary">Backend</h3> </div>
+                    <h3 class="text-primary">{% block header %}{% endblock %}</h3> </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>

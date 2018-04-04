@@ -9,7 +9,7 @@
         <div class="col-lg-8">
             <div class = "card">
             <h4 class="card-title">Transfer Money</h4>
-            <h6 class="card-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis facilisis risus quis nibh bibendum maximus. Integer neque nulla, hendrerit eu turpis ac, rhoncus convallis elit</h6>
+            <!-- <h6 class="card-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis facilisis risus quis nibh bibendum maximus. Integer neque nulla, hendrerit eu turpis ac, rhoncus convallis elit</h6> -->
             </div>
         </div>
     </div>
@@ -26,11 +26,7 @@
 											          <h5 class="media-heading">Balance : {{ request.user.profile.money }}</h5> 
                                 <h4>Select beneficiary</h4>
                                 <form method="get">
-                                    <select name="send_user">
-                                        {% for u in users %}
-                                        <option value="{{ u.id }}">{{ u.username }}</option>
-                                        {% endfor %}
-                                    </select>
+                                        <input type="text" name="amount" value="100"><br>
                                 </br>
                                 </br>
                                 </br>

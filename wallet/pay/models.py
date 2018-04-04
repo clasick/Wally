@@ -31,3 +31,10 @@ class Transcation(models.Model):
     receiver = models.ForeignKey(User, on_delete=models.CASCADE, related_name='receiver')
     amt = models.FloatField()
     timestamp = models.DateTimeField()
+
+class CreditCard(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    owner = models.CharField(max_length=100)
+    cvv = models.CharField(max_length=3)
+    number = models.CharField(max_length=16)
+    exp_date = models.CharField(max_length=6)
