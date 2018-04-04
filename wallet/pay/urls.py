@@ -1,5 +1,6 @@
 from django.urls import path
 from django.contrib.auth.views import login
+from django.contrib.auth import views as auth_views
 
 from . import views
 
@@ -7,9 +8,10 @@ app_name = 'pay'
 
 urlpatterns = [
     # ex: /polls/
-    path('', views.index, name='index'),
-#   path('logout', auth_views.logout, {'next_page': '/'}, name='logout'),
+    path('', auth_views.login, name='login'),
     path('dashboard', views.dashboard, name='dashboard'),
     path('account', views.account, name='account'),
-    path('transfer', views.transfer, name='transfer')
+    path('transfer', views.transfer, name='transfer'),
+    path('signup', views.signup, name='signup')
+
 ]

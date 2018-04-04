@@ -1810,28 +1810,13 @@ body>#login #dont_have_an_account a:hover { border-bottom: 2px solid #f90 }
            <span class="button_text">Sign In</span>
            </button>
            </div> -->
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-        </form>
-        <!-- <div id="sign_in_options" class="field_container">
-             <div id="sign_in_alternatives_container">
-             <span id="google_sign_in_option">or you can <a href="#" id="google_sign_in" class="login_link">sign in with Google</a></span>
-             <span id="password_sign_in_option">or you can <a href="#" id="password_sign_in" class="login_link">sign in using a password</a></span>
-             </div>
-             <div id="remember_me_container">
-             <input name="user[remember_me]" type="hidden" value="0"><input id="user_remember_me" name="user[remember_me]" type="checkbox" value="1">
-             <label class="login_link" for="user_remember_me" id="remember_me_label">stay signed in</label>
-             </div>
-             <div class="clearfix"></div>
-             </div>
-             </form><div id="chrome_web_store" style="opacity: 1;"><span id="chrome_logo"></span><h2>Using Google Chrome? <a id="chrome_ad_link" href="#">Get Login</a> for Chrome!</h2></div>
-        -->
-  <div id="dont_have_an_account">
-    <h2>
-      Need to <a href="/signup" class="login_link">sign up</a> for an account
-    </h2>
+              <h2>Sign up</h2>
+              <form method="post">
+                  {% csrf_token %}
+                  {{ form.as_p }}
+                  <button type="submit">Sign up</button>
+              </form>
+      </div>
   </div>
 </div>
   
