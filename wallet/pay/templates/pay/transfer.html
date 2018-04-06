@@ -1,60 +1,79 @@
 {% extends 'pay/base.html' %}
 {% load staticfiles %}
 
+{% block title %}Transfer Money{% endblock %}
+{% block header %}Transfer Money{% endblock %}
+
 {% block content %}
 
-
 <div class="container-fluid">
-    <div class ="row">
+
+    {% if errors|length > 0 %}
+    <div class="row">
+
         <div class="col-lg-8">
             <div class = "card">
-            <h4 class="card-title">Transfer Money</h4>
-            <!-- <h6 class="card-subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis facilisis risus quis nibh bibendum maximus. Integer neque nulla, hendrerit eu turpis ac, rhoncus convallis elit</h6> -->
+
+                {% for error in errors %}
+
+                {{ error }}
+            
+                {% endfor %}
             </div>
         </div>
+
     </div>
-    <div class ="row">
-        <div class ="col-lg-8">
+    {% endif %}
+
+    <div class="row">
+        <div class="col-lg-8">
             <div class="card">
                 <div class="recent-comment">
-									  <div class="media">
-										    <div class="media-left">
-											      <a href="#"><img alt="..." src="/static/images/twitter-avatar.png" class="media-object"></a>
-										        </div>
-										        <div class="media-body">
-											          <h4 class="media-heading"> {{ request.user.username }} </h4>
-											          <h5 class="media-heading">Balance : {{ request.user.profile.money }}</h5> 
-                                <h4>Select beneficiary</h4>
-                                <form method="get">
-                                        <input type="text" name="amount" value="100"><br>
-                                </br>
-                                </br>
-                                </br>
-                                    <input type="text" name="amount" value="100"><br>
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="#">
+                                <img alt="..." src="/static/images/twitter-avatar.png" class="media-object">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h4 class="media-heading"> {{ request.user.username }} </h4>
+                            <h5 class="media-heading">Balance : {{ request.user.profile.money }}</h5>
+                        </div>
+                    </div>
+                </div>
 
-                                </br>
-                                </br>
-                                    <input type="submit" value="Submit">
-                                    </form>
+                <form method="post">
 
-
-										        </div>
-
-									  </div>
+                    {% csrf_token %}
+         
+                    {%csrf_token%}
+                    {% for error in form.non_field_errors %}
+                    <div class="form-group has-errors text-danger small">
+                        {{error}}
+                    </div>
+                    {% endfor %}
+                    {% for field in form %}
+                    <div class="form-group has-errors text-danger small">
+                        {{field.errors}}
+                    </div>
+                    <div class="form-group has-errors text-danger small">
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-10 control-label">{{ field.label }}</label>
+                        <div class="col-sm-10">  
+                             {{field}}
+                         </div>
+                    </div>
+                    {% endfor %}
+                    <button class="btn btn-success" style="width:100%">Transfer</button>
+                                        
+                    
+                </form>
+                    
             </div>
         </div>
-        </div>
-        <div class="col-lg-4">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">{{ msg1 }}</h4>
-                <div class="progress m-t-20">
-                    <div class="progress-bar bg-info progress-bar-striped" aria-valuenow="{{ percent }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ percent }}%; height:10px;" role="progressbar"> <span class="sr-only">85% Complete (success)</span> </div>
-                    </div>
-                    </div>
-                    </div>
-                    </div>
     </div>
+</div>
 
 {% endblock %}
 
