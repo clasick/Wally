@@ -1,0 +1,72 @@
+{% extends 'pay/base.html' %}
+
+{% block header %}Shopping Cart{% endblock %}
+{% block title %}Shopping Cart{% endblock %}
+
+{% block content %}
+   
+    <div class="container-fluid">
+            {% if errors|length > 0 %}
+            <div class="row">
+        
+                <div class="col-lg-8">
+                    <div class="card">
+        
+                        {% for error in errors %} {{ error }} {% endfor %}
+                    </div>
+                </div>
+        
+            </div>
+            {% endif %}
+            
+            <div class="row">
+                <div class="col-lg-8">
+                <div class="card">
+                    <table>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                            </tr>
+                            {% for item in cart %}
+                            <tr>
+                                <td>{{ item.product.name }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td>{{ item.total_price|floatformat }}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+            </div>
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+            <div class="card">
+            <p>Total Price: {{ amount|floatformat }}</p>
+            <a href="?make-payment=1" class="btn btn-primary"><i class="fa fa-money"></i> Make Payment</a>
+
+        </div>
+
+    </div>
+</div>
+        </div>
+
+        <!-- <div class="col-lg-4">
+                <div class="card p-30">
+                        <div class="media">
+                        <div class="media-left meida media-middle">
+                        <span><i class="fa fa-inr f-s-40 color-primary"></i></span>
+                        </div>
+                        <div class="media-body media-text-right">
+                        <h2>{{ request.user.profile.money }}</h2>
+                        <p class="m-b-0">Account Balance</p>
+                        </div>
+                        </div>
+                </div>
+                </div> -->
+        </div>
+
+    </div>
+        
+{% endblock %}

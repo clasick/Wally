@@ -1,0 +1,63 @@
+{% extends 'pay/base.html' %} 
+{% load staticfiles %} 
+
+
+{% block title %}Transcations{% endblock %} 
+{% block header %}Transcations{% endblock %} 
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-title">Received</div>
+                {% if receive_list|length > 1 %}
+                <div class="recent-comment">
+                    {% for item in receive_list %}
+                            <div class="media">
+                                <div class="media-left">
+                                        <a href="#"><img alt="..." src="/static/images/twitter-avatar.png" class="media-object"></a>
+                                </div>
+                                <div class="media-body">
+                                        <h4 class="media-heading">{{ item.sender|title }}</h4>
+                                        <p>Amount: ₹ {{ item.amt|floatformat }}</p>
+                                        <p class="comment-date">{{ item.timestamp }}</p>
+                                </div>
+                            </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                    <p>You have not received any money on Wally.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-title">Sent</div>
+                    {% if send_list|length > 1 %}
+                    <div class="recent-comment">
+                        {% for item in send_list %}
+                                <div class="media">
+                                    <div class="media-left">
+                                            <a href="#"><img alt="..." src="/static/images/twitter-avatar.png" class="media-object"></a>
+                                    </div>
+                                    <div class="media-body">
+                                            <h4 class="media-heading">{{ item.receiver|title }}</h4>
+                                            <p>Amount: ₹ {{ item.amt|floatformat }}</p>
+                                            <p class="comment-date">{{ item.timestamp }}</p>
+                                    </div>
+                                </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                        <p>You have not sent any money on Wally.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+</div>
+
+{% endblock %}

@@ -2,10 +2,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-# Create your models here.
-
 from django.contrib.auth.models import User
-
 
 class Wallet(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -47,3 +44,10 @@ class CreditCard(models.Model):
     cvv = models.CharField(max_length=3)
     number = models.CharField(max_length=16)
     exp_date = models.CharField(max_length=6)
+
+class Product(models.Model):
+    name = models.CharField(max_length=100)
+    price = models.FloatField()
+    stock = models.IntegerField(default=1)
+    desc = models.CharField(max_length=200, default='')
+    url = models.CharField(max_length=200, default='')
