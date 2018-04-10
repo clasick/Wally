@@ -1,9 +1,13 @@
 {% extends 'pay/base.html' %}
-{% load staticfiles %}
+
+{% block header %}Hot Deals{% endblock %}
+{% block title %}Hot Deals{% endblock %}
+
+
+% load staticfiles %}
 
 {% block content %}
             <div class="container-fluid">
-                <h2>Hot Deals</h2>
                 <div class="row">
                     
                     {% for product in product_list %}
