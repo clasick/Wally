@@ -16,6 +16,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     money = models.FloatField(default=0)
     phone_no = models.CharField(max_length=10, null=True)
+    ssn = models.CharField(max_length=12, null=True)
 
 
 @receiver(post_save, sender=User)
