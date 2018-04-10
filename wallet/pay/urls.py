@@ -15,4 +15,5 @@ urlpatterns = [
     path('transcations', views.transcations, name='transcations' ),
     path('signup', views.signup, name='signup'),
     path('shopping-cart', views.shopping_cart, name='shopping_cart'),
+    path('edit-profile', views.edit_profile, name='edit_profile')
 ]
