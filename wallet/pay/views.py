@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
-from .forms import SignUpForm, CreditCardForm, AddMoneyForm, SendMoneyForm
+from .forms import SignUpForm, CreditCardForm, AddMoneyForm, SendMoneyForm, ChangeProfileDetails
 from .models import CreditCard, Profile, Transcation, Product
 from django.core.exceptions import ValidationError
 from datetime import datetime
@@ -12,22 +12,50 @@ from django.utils.timezone import make_aware
 
 from cart.cart import Cart
 
+
 def add_to_cart(request, product_id, quantity):
     product = Product.objects.get(id=product_id)
     cart = Cart(request)
     cart.add(product, product.price, quantity)
+
 
 def remove_from_cart(request, product_id):
     product = Product.objects.get(id=product_id)
     cart = Cart(request)
     cart.remove(product)
 
+
+def edit_profile(request):
+    if request.method == 'POST':
+        form = ChangeProfileDetails(request.POST)
+        if form.is_valid():
+            request.user.username = form.cleaned_data['username']
+            request.user.first_name = form.cleaned_data['first_name']
+            request.user.last_name = form.cleaned_data['last_name']
+            request.user.profile.phone_no = form.cleaned_data['phone_no']
+            request.user.profile.ssn = form.cleaned_data['ssn']
+            request.user.save()
+            return redirect('pay:account')
+    else:
+        # u = User.objects.filter(pk=request.user.id)
+        # print(u)
+        form = ChangeProfileDetails()
+        form.fields['username'].initial = request.user.username
+        form.fields['first_name'].initial = request.user.first_name
+        form.fields['last_name'].initial = request.user.last_name
+        form.fields['phone_no'].initial = request.user.profile.phone_no
+        form.fields['ssn'].initial = request.user.profile.ssn
+
+    return render(request, 'signup.html', {'form': form, 'signup': 0})
+
+
 def shopping_cart(request):
+
     u = User.objects.get(pk=request.user.id)
-    
+
     amount = 0
     errors = []
-    
+
     for item in Cart(request):
         amount = amount + item.product.price
 
@@ -37,21 +65,29 @@ def shopping_cart(request):
                 remove_from_cart(request, item.product.id)
                 u.profile.money -= item.product.price
             u.save()
+            return redirect('pay:dashboard')
         else:
-            errors.append("You don't have enough money in your account. Please add more balance.")
-            
+            errors.append(
+                "You don't have enough money in your account. Please add more balance.")
+
     if request.GET.get('remove'):
-        remove_from_cart(request, request.GET.get('remove'))
-        errors.append("Removed item from cart.")
-        
-    context = {'cart': Cart(request), 'user': u, 'amount': amount, 'errors': errors}
+        try:
+            remove_from_cart(request, request.GET.get('remove'))
+            errors.append("Removed item from cart.")
+        except:
+            errors.append("Error removing item from cart.")
+
+    context = {'cart': list(Cart(request)), 'user': u,
+               'amount': amount, 'errors': errors}
     return render_to_response('pay/cart.html', context)
+
 
 def index(request):
     return HttpResponse("this is the index page")
 
 
 def dashboard(request):
+
     product_list = Product.objects.all()
 
     if request.GET.get('add-prod'):
@@ -63,6 +99,7 @@ def dashboard(request):
 
 
 def account(request):
+
     u = User.objects.get(pk=request.user.id)
 
     linked = 0
