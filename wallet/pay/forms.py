@@ -33,6 +33,17 @@ class SignUpForm(UserCreationForm):
         model = User
         fields = ('username', 'firstname', 'lastname', 'phone_no', 'password1', 'password2', )
 
+class ChangeProfileDetails(forms.Form):
+    username = forms.CharField(max_length=10, widget=forms.TextInput(
+        attrs={'autocomplete': 'off', 'class': 'form-control'}), label='Username')
+    first_name = forms.CharField(max_length=10, widget=forms.TextInput(
+        attrs={'autocomplete': 'off', 'class': 'form-control'}), label='First Name')
+    last_name = forms.CharField(max_length=10, widget=forms.TextInput(
+        attrs={'autocomplete': 'off', 'class': 'form-control'}), label='Last Name')
+    phone_no = forms.CharField(max_length=10, widget=forms.TextInput(
+        attrs={'autocomplete': 'off', 'class': 'form-control'}), label='Phone Number')
+    ssn = forms.CharField(max_length=12, widget=forms.TextInput(
+        attrs={'autocomplete': 'off', 'class': 'form-control'}), label='Aaadhar Number')
 
 class CreditCardForm(forms.ModelForm):
     owner = forms.CharField(max_length=100, widget=forms.TextInput(
@@ -92,7 +103,6 @@ class AddMoneyForm(forms.Form):
         return self.cleaned_data.get('amt', '')
     # exp_date = forms.CharField(max_length=6, widget=forms.TextInput(attrs={'autocomplete':'off', 'class': 'form-control'}), label = 'Expiry Date' )
 
-
 class SendMoneyForm(forms.Form):
     receiver_phone = forms.CharField(max_length=10, widget=forms.TextInput(
         attrs={'autocomplete': 'off', 'class': 'form-control'}), label='Beneficiary Phone no.')
@@ -111,5 +121,9 @@ class SendMoneyForm(forms.Form):
     def clean_receiver_phone(self):
         if not all(char.isdigit() for char in self.cleaned_data.get('receiver_phone', '')):
             raise ValidationError("Receiver phone contains special characters")
-
+            
+        if not Profile.objects.filter(phone_no=self.cleaned_data.get('phone_no', '')).count():
+            raise ValidationError('Given phone number does not exist in database.')
+                
         return self.cleaned_data.get('receiver_phone', '')
+
