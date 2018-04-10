@@ -19,6 +19,17 @@
             </div>
             {% endif %}
             
+        {% if cart|length == 0 %}
+
+        <div class="col-lg-8">
+            <div class="card">
+                <p>You have no items in your cart.</p>
+            </div>
+        </div>
+        
+        {% else %}
+
+                
             <div class="row">
                 <div class="col-lg-8">
                 <div class="card">
@@ -51,6 +62,7 @@
         </div>
 
     </div>
+{% endif %}
 </div>
         </div>
 
