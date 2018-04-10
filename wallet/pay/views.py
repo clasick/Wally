@@ -40,6 +40,10 @@ def shopping_cart(request):
         else:
             errors.append("You don't have enough money in your account. Please add more balance.")
             
+    if request.GET.get('remove'):
+        remove_from_cart(request, request.GET.get('remove'))
+        errors.append("Removed item from cart.")
+        
     context = {'cart': Cart(request), 'user': u, 'amount': amount, 'errors': errors}
     return render_to_response('pay/cart.html', context)
 
@@ -71,8 +75,8 @@ def account(request):
         if form.is_valid():
             u.profile.money += float(form.cleaned_data.get('amt'))
             u.save()
-
-    form = AddMoneyForm()
+    else:
+        form = AddMoneyForm()
     context = {'user': u, 'linked': linked, 'form': form}
     return render(request, 'pay/account.html', context)
 
