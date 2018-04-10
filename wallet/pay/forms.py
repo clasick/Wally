@@ -1,7 +1,9 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, AuthenticationForm
 from django.contrib.auth.models import User
 from .models import CreditCard, Profile
+from django.views.generic import UpdateView
+from django.shortcuts import get_object_or_404, reverse
 
 from django.core.exceptions import ValidationError
 
