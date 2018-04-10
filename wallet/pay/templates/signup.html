@@ -6,6 +6,22 @@
 {% block content %}
 
 <div class = "container-fluid">
+        <div class = "row">
+                <div class = "col-md-4"></div>
+            <div class = "col-md-4">
+        <div class="navbar-header">
+                <a class="navbar-brand" href="/dashboard">
+                    <!-- Logo icon -->
+                    <!-- <b><img src="/static/images/logo.png" alt="homepage" class="dark-logo" /></b> -->
+                    <!--End Logo icon -->
+                    <!-- Logo text -->
+                    <span><img src="/static/images/logo-text.png" alt="homepage" class="dark-logo" style="margin-top:50px;margin-left:180px;"></span>
+                </a>
+            </div>
+            </div>
+            </div>
+            </div>
+
     <div class = "row">
             <div class = "col-md-4"></div>
         <div class = "col-md-4">
@@ -33,8 +49,11 @@
                     </div>
                </div>
                {% endfor %}
+               {% if signup %}
                <button class="btn btn-primary" style="width:100%">Signup</button>
-                
+               {% else %}
+                <button class="btn btn-primary" style="width:100%">Update</button>
+                {% endif %}
            </form>
       </div>
     </div>
