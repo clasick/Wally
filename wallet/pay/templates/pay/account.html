@@ -21,8 +21,11 @@ Details {% endblock %} {% block content %}
                             <h5 class="media-heading">Email</h5>
                                 <p>{{ request.user.email }}</p>
                         </div>
+                        
                 <!-- </div> -->
-                           
+                <a href="/edit-profile"><button type="button" class="btn btn-warning"><i class="fa fa-pencil-square-o"></i> Update Details</button></a>
+
+                
                         </div>
                     </div>
 
@@ -77,7 +80,7 @@ Details {% endblock %} {% block content %}
                             </div>
                         </div>
                         {% endfor %}
-                        <button class="btn btn-primary" style="width:100%"><i class="fa fa-money"></i> Add Money</button>
+                        <button class="btn btn-success" style="width:100%"><i class="fa fa-money"></i> Add Money</button>
 
                     </form>
                 </div>
