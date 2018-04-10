@@ -80,9 +80,9 @@ class CreditCardForm(forms.ModelForm):
 
 
 class AddMoneyForm(forms.Form):
-    amt = forms.FloatField(min_value=0.0, max_value=100000.0, widget=forms.TextInput(
+    amt = forms.FloatField(widget=forms.TextInput(
         attrs={'autocomplete': 'off', 'class': 'form-control'}), label='Amount (Limit: Rs. 100,000)')
-
+    
     def clean_amt(self):
         if self.cleaned_data.get('amt', '') <= 0:
             raise ValidationError("Amount cannot be zero or negative")

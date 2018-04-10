@@ -27,12 +27,14 @@
                                 <th>Product</th>
                                 <th>Quantity</th>
                                 <th>Price</th>
+                                <th></th>
                             </tr>
                             {% for item in cart %}
                             <tr>
                                 <td>{{ item.product.name }}</td>
                                 <td>{{ item.quantity }}</td>
                                 <td>{{ item.total_price|floatformat }}</td>
+                                <td><a href="?remove={{ item.product.id }}" class="btn btn-danger"><i class="fa fa-trash-o"></i> Remove</a>                                </td>
                             </tr>
                             {% endfor %}
                         </table>
