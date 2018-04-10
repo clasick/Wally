@@ -188,8 +188,11 @@ def link_card(request, u_id):
 
 
 def transcations(request):
-    receive_list = Transcation.objects.filter(receiver=request.user).order_by('-timestamp')
-    send_list = Transcation.objects.filter(sender=request.user).order_by('-timestamp')
+
+    receive_list = Transcation.objects.filter(
+        receiver=request.user).order_by('-timestamp')
+    send_list = Transcation.objects.filter(
+        sender=request.user).order_by('-timestamp')
 
     context = {'receive_list': receive_list, 'send_list': send_list}
     return render(request, 'pay/transcations.html', context)
