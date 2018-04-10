@@ -39,7 +39,7 @@ class CreditCardForm(forms.ModelForm):
         attrs={'autocomplete': 'off', 'class': 'form-control'}), label='Card Number')
     exp_date = forms.CharField(max_length=6, widget=forms.TextInput(
         attrs={'autocomplete': 'off', 'class': 'form-control'}), label='Expiry Date')
-    cvv = forms.CharField(max_length=3, widget=forms.TextInput(
+    cvv = forms.CharField(max_length=3, widget=forms.PasswordInput(
         attrs={'autocomplete': 'off', 'class': 'form-control'}), label='CVV')
 
     def clean_owner(self):
