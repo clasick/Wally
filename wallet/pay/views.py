@@ -119,6 +119,7 @@ def account(request):
 
 
 def transfer(request):
+
     u = User.objects.get(pk=request.user.id)
 
     errors = []
@@ -146,8 +147,8 @@ def transfer(request):
             else:
                 errors.append(
                     "User with specified phone number does not exist.")
-
-    form = SendMoneyForm()
+    else:
+        form = SendMoneyForm()
     context = {'user': u, 'form': form, 'errors': errors}
 
     return render(request, 'pay/transfer.html', context)
