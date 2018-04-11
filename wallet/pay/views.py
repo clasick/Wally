@@ -30,6 +30,7 @@ def edit_profile(request):
         form = ChangeProfileDetails(request.POST)
         if form.is_valid():
             request.user.username = form.cleaned_data['username']
+            request.user.email = form.cleaned_data['email']
             request.user.first_name = form.cleaned_data['first_name']
             request.user.last_name = form.cleaned_data['last_name']
             request.user.profile.phone_no = form.cleaned_data['phone_no']
@@ -41,6 +42,7 @@ def edit_profile(request):
         # print(u)
         form = ChangeProfileDetails()
         form.fields['username'].initial = request.user.username
+        form.fields['email'].initial = request.user.email #email
         form.fields['first_name'].initial = request.user.first_name
         form.fields['last_name'].initial = request.user.last_name
         form.fields['phone_no'].initial = request.user.profile.phone_no
