@@ -26,6 +26,11 @@ class SignUpForm(UserCreationForm):
         if Profile.objects.filter(phone_no=self.cleaned_data.get('phone_no', '')):
             raise ValidationError(
                 'Given phone number already exists in database.')
+        if not all(char.isdigit() for char in self.cleaned_data.get('phone_no', '')):
+            raise ValidationError("Phone number contains special characters")
+        if len(self.cleaned_data.get('phone_no', '')) != 10:
+            raise ValidationError(
+                "Phone number too short/long.")
 
         return self.cleaned_data.get('phone_no', '')
 
