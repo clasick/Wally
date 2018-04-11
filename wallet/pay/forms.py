@@ -41,6 +41,8 @@ class SignUpForm(UserCreationForm):
 class ChangeProfileDetails(forms.Form):
     username = forms.CharField(max_length=10, widget=forms.TextInput(
         attrs={'autocomplete': 'off', 'class': 'form-control'}), label='Username')
+    email = forms.CharField(max_length=50, widget=forms.TextInput(
+        attrs={'autocomplete': 'off', 'class': 'form-control'}), label='Email')
     first_name = forms.CharField(max_length=10, widget=forms.TextInput(
         attrs={'autocomplete': 'off', 'class': 'form-control'}), label='First Name')
     last_name = forms.CharField(max_length=10, widget=forms.TextInput(
