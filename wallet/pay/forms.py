@@ -130,8 +130,5 @@ class SendMoneyForm(forms.Form):
         if not all(char.isdigit() for char in self.cleaned_data.get('receiver_phone', '')):
             raise ValidationError("Receiver phone contains special characters")
             
-        if not Profile.objects.filter(phone_no=self.cleaned_data.get('phone_no', '')).count():
-            raise ValidationError('Given phone number does not exist in database.')
-                
         return self.cleaned_data.get('receiver_phone', '')
 
