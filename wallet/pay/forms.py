@@ -106,7 +106,8 @@ class AddMoneyForm(forms.Form):
     def clean_amt(self):
         if self.cleaned_data.get('amt', '') <= 0:
             raise ValidationError("Amount cannot be zero or negative")
-
+        if self.cleaned_data.get('amt', '') >= 100000:
+            raise ValidationError("Amount cannot be over Rs. 1 lakh")
         return self.cleaned_data.get('amt', '')
     # exp_date = forms.CharField(max_length=6, widget=forms.TextInput(attrs={'autocomplete':'off', 'class': 'form-control'}), label = 'Expiry Date' )
 
