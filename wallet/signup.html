@@ -1,22 +1,17 @@
-
-
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="static/images/favicon.png">
     <title>Wally</title>
-    <!-- Bootstrap Core CSS -->
-    
+
     <link href="static/css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
 
     <link href="static/css/lib/calendar2/semantic.ui.min.css" rel="stylesheet">
     <link href="static/css/lib/calendar2/pignose.calendar.min.css" rel="stylesheet">
@@ -24,150 +19,249 @@
     <link href="static/css/lib/owl.theme.default.min.css" rel="stylesheet" />
     <link href="static/css/helper.css" rel="stylesheet">
     <link href="static/css/style.css" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
-    <!--[if lt IE 9]>
-    <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+
+
+    <script type="text/javascript">
+        function validateEmail(email) {
+            var re =
+                /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        function validatePhoneNo(phoneNo) {
+
+            var re = /^\d{10}$/;
+
+            return re.test(String(phoneNo));
+        }
+
+        function validateUserName(userName) {
+
+            var re = /^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/
+
+            return re.test(String(userName));
+        }
+
+
+        function validateForm() {
+
+            var flag1 = 0,
+                flag2 = 0,
+                flag3 = 0,
+                flag4 = 0;
+
+            var email = document.forms["myForm"]["email"].value;
+            var phoneno = document.forms["myForm"]['phone_no'].value;
+            var userName = document.forms["myForm"]['username'].value;
+            var password1 = document.forms["myForm"]['password1'].value;
+            var password2 = document.forms["myForm"]['password2'].value;
+
+
+            if (!validateEmail(email)) {
+                document.getElementById("error-email").innerHTML =
+                    '<ul class="errorlist"><li>Please provide a valid email address.</li></ul>';
+                flag1 = 1;
+            } else {
+                document.getElementById("error-email").innerHTML =
+                    '';
+                flag1 = 0;
+
+            }
+
+            if (!validatePhoneNo(phoneno)) {
+                document.getElementById("error-phoneno").innerHTML =
+                    '<ul class="errorlist"><li>Please provide a valid phone number.</li></ul>';
+                flag2 = 1;
+            } else {
+                document.getElementById("error-phoneno").innerHTML =
+                    '';
+                flag2 = 0;
+
+            }
+
+            if (!validateUserName(userName)) {
+                document.getElementById("error-username").innerHTML =
+                    '<ul class="errorlist"><li>Please provide a valid username.</li></ul>';
+                flag3 = 1;
+            } else {
+                document.getElementById("error-username").innerHTML =
+                    '';
+                flag3 = 0;
+
+            }
+
+            if (password1 != password2) {
+                document.getElementById("error-password1").innerHTML =
+                    '<ul class="errorlist"><li>Your passwords do not match.</li></ul>';
+                flag4 = 1;
+            } else {
+                document.getElementById("error-password1").innerHTML =
+                    '';
+                flag4 = 0;
+
+            }
+
+            if (!flag1 && !flag2 && !flag3 && !flag3) {
+                window.location = "account.html";
+            }
+
+
+        }
+    </script>
+
+
 </head>
 
 <body class="fix-header fix-sidebar">
-    <!-- Preloader - style you can find in spinners.css -->
     <div class="preloader">
         <svg class="circular" viewBox="25 25 50 50">
-			<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
     </div>
-    <!-- Main wrapper  -->
     <div id="main-wrapper">
-        <!-- header header  -->
-       
-        <!-- End header header -->
-        <!-- Left Sidebar  -->
-       
-        <!-- End Left Sidebar  -->
-        <!-- Page wrapper  -->
-            <!-- Bread crumb -->
 
-            <!-- End Bread crumb -->
-            <!-- Container fluid  -->
-             
 
-<div class = "container-fluid">
-        <div class = "row">
-                <div class = "col-md-4"></div>
-            <div class = "col-md-4">
-        <div class="navbar-header">
-                <a class="navbar-brand" href="/dashboard">
-                    <!-- Logo icon -->
-                    <!-- <b><img src="static/images/logo.png" alt="homepage" class="dark-logo" /></b> -->
-                    <!--End Logo icon -->
-                    <!-- Logo text -->
-                    <span><img src="static/images/logo-text.png" alt="homepage" class="dark-logo" style="margin-top:50px;margin-left:220px;"></span>
-                </a>
-            </div>
-            </div>
-            </div>
-            </div>
 
-    <div class = "row">
-            <div class = "col-md-4"></div>
-        <div class = "col-md-4">
-  <div class="card">
-     <div class="basic-form">
-            <form method="post">
-                    <input type='hidden' name='csrfmiddlewaretoken' value='CiDXpSMv9KFaTvAYr5RbrVprNzddzz0kUwUVksBnhsI4NuVJRnazl89pXfqGQk3P' />
-     
-                    <input type='hidden' name='csrfmiddlewaretoken' value='CiDXpSMv9KFaTvAYr5RbrVprNzddzz0kUwUVksBnhsI4NuVJRnazl89pXfqGQk3P' />
-                    
-                    
-                    <div class="form-group has-errors text-danger small">
-                        
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/dashboard">
+                            <span>
+                                <img src="static/images/logo-text.png" alt="homepage" class="dark-logo" style="margin-top:50px;margin-left:180px;">
+                            </span>
+                        </a>
                     </div>
-                    <div class="form-group has-errors text-danger small">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="basic-form">
+                        <form name="myForm" action="#" onsubmit="return false">
+
+                            <div class="form-group has-errors text-danger small">
+
+                            </div>
+                            <div id="error-username" class="form-group has-errors text-danger small">
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-10 control-label">Username</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="username" autocomplete="off" class="form-control" maxlength="10" autofocus required id="id_username"
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="form-group has-errors text-danger small">
+
+                            </div>
+                            <div id="error-firstname" class="form-group has-errors text-danger small">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-10 control-label">First Name</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="firstname" autocomplete="off" class="form-control" maxlength="10" required id="id_firstname" />
+                                </div>
+                            </div>
+
+                            <div class="form-group has-errors text-danger small">
+
+                            </div>
+                            <div id="error-lastname" class="form-group has-errors text-danger small">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-10 control-label">Last Name</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="lastname" autocomplete="off" class="form-control" maxlength="10" required id="id_lastname" />
+                                </div>
+                            </div>
+
+                            <div class="form-group has-errors text-danger small">
+
+                            </div>
+                            <div id="error-email" class="form-group has-errors text-danger small">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-10 control-label">Email</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="email" autocomplete="off" class="form-control" maxlength="30" required id="id_email" />
+                                </div>
+                            </div>
+
+                            <div id="error-phoneno" class="form-group has-errors text-danger small">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-10 control-label">Phone Number</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="phone_no" autocomplete="off" class="form-control" maxlength="10" required id="id_phone_no" />
+                                </div>
+                            </div>
+
+                            <div class="form-group has-errors text-danger small">
+
+                            </div>
+                            <div id="error-password1" class="form-group has-errors text-danger small">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-10 control-label">Password</label>
+                                <div class="col-sm-10">
+                                    <input type="password" name="password1" autocomplete="off" class="form-control" maxlength="10" required id="id_password1"
+                                    />
+                                </div>
+                            </div>
+
+                            <div class="form-group has-errors text-danger small">
+
+                            </div>
+                            <div id="error-password2" class="form-group has-errors text-danger small">
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-10 control-label">Password Confirmation</label>
+                                <div class="col-sm-10">
+                                    <input type="password" name="password2" autocomplete="off" class="form-control" maxlength="10" required id="id_password2"
+                                    />
+                                </div>
+                            </div>
+
+                            <button onclick="validateForm()" class="btn btn-primary" style="width:100%">Sign me up!</button>
+
+                        </form>
                     </div>
-                    
-                    <div class="form-group has-errors text-danger small">
-                        
-                    </div>
-                    <div class="form-group has-errors text-danger small">
-                    </div>
-                      
-                    <div class="col-sm-10">  
-                            <label class="col-sm-10 control-label">Username</label>
-                    </br>
-                            <input type="text" name="username" autocomplete="off" class="form-control" maxlength="10" autofocus="" required="" id="id_username">
-                        </br>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
 
-                            <label class="col-sm-10 control-label">Password</label>
-                        </br>
-
-                            <input type="password" name="password" autocomplete="off" class="form-control" maxlength="10" autofocus="" required="" id="id_password">
-                        </br>
-
-                    </div>  
-                </br>
-
-                    <button class="btn btn-primary" style="width:100%">Login</button>
-                </form>
-            </br>
-            <a href="/signup">
-                <button class="btn btn-secondary" style="width:100%">Signup</button>
-            </a>
-
-                
-            
-      </div>
-    </div>
-      </div>
-      <div class = "col-md-4"></div>
-
-    </div>
+        </div>
     </div>
 
-
-    
-
-            <!-- End Container fluid  -->
-            <!-- footer -->
-            <!-- End footer -->
-        <!-- End Page wrapper  -->
     </div>
-    <!-- End Wrapper -->
-    <!-- All Jquery -->
     <script src="static/js/lib/jquery/jquery.min.js"></script>
-    <!-- Bootstrap tether Core JavaScript -->
     <script src="static/js/lib/bootstrap/js/popper.min.js"></script>
     <script src="static/js/lib/bootstrap/js/bootstrap.min.js"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
     <script src="static/js/jquery.slimscroll.js"></script>
-    <!--Menu sidebar -->
     <script src="static/js/sidebarmenu.js"></script>
-    <!--stickey kit -->
     <script src="static/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
-    <!--Custom JavaScript -->
 
 
-    <!-- Amchart -->
-     <script src="static/js/lib/morris-chart/raphael-min.js"></script>
+    <script src="static/js/lib/morris-chart/raphael-min.js"></script>
     <script src="static/js/lib/morris-chart/morris.js"></script>
     <script src="static/js/lib/morris-chart/dashboard1-init.js"></script>
 
 
-	<script src="static/js/lib/calendar-2/moment.latest.min.js"></script>
-    <!-- scripit init-->
+    <script src="static/js/lib/calendar-2/moment.latest.min.js"></script>
     <script src="static/js/lib/calendar-2/semantic.ui.min.js"></script>
-    <!-- scripit init-->
     <script src="static/js/lib/calendar-2/prism.min.js"></script>
-    <!-- scripit init-->
     <script src="static/js/lib/calendar-2/pignose.calendar.min.js"></script>
-    <!-- scripit init-->
     <script src="static/js/lib/calendar-2/pignose.init.js"></script>
 
     <script src="static/js/lib/owl-carousel/owl.carousel.min.js"></script>
     <script src="static/js/lib/owl-carousel/owl.carousel-init.js"></script>
     <script src="static/js/scripts.js"></script>
-    <!-- scripit init-->
 
     <script src="static/js/custom.min.js"></script>
 
