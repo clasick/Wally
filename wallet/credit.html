@@ -1,6 +1,5 @@
-
-
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -12,9 +11,9 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="static/images/favicon.png">
-    <title>Link Credit Card  - Wally</title>
+    <title>Link Credit Card - Wally</title>
     <!-- Bootstrap Core CSS -->
-    
+
     <link href="static/css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
 
@@ -25,36 +24,65 @@
     <link href="static/css/helper.css" rel="stylesheet">
     <link href="static/css/style.css" rel="stylesheet">
     <script type="text/javascript">
-            function test() {
-                alert("hi");
-            }
-            function validate1()
-            {
-            var cno =  document.getElementById("cardNumber");
-            var cvv = document.getElementById("cvv");
-            var cardno = /^[0-9]*{16}$/;
-            var cvvno = /^[0-9]*{3}$/;
+
+        function validate1() {
+            var cno = document.getElementById("cardNumber");
+            console.log("CNO " + cno.value);
+            var cvv1 = document.getElementById("cvv");
+            console.log("cvv1:  " + cvv1.value);
+
+            var flag1 = 0,
+                flag2 = 0,
+                flag3 = 0;
+
+            // var cardno = 
+            var cno1 = /^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|(222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01][0-9]|2720)[0-9]{12}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11}|62[0-9]{14})$/
             var name = document.getElementById("owner");
             var nameval = /^[a-zA-Z]*$/;
-            if(!name.value.match(nameval)) {
-                name.setCustomValidity("Enter valid name.");
-                return false;
-            }
-           
-           
-            if(!cno.value.match(cardno)) {
-                    cno.setCustomValidity("Enter valid card number");
-                   return false;
-                    }
+            if (!name.value.match(nameval)) {
+                document.getElementById("error-name").innerHTML =
+                    '<ul class="errorlist"><li>Enter valid name.</li></ul>';
+                    flag1= 1;
 
-            if(!cvv.value.match(cvvno)) {
-                cvv.setCustomValidity("Enter valid cvv number");
-                
+            } else {
+                document.getElementById("error-name").innerHTML =
+                    '';
+                    flag1=0;
             }
+
+
+            if (!cno.value.match(cno1)) {
+                document.getElementById("error-card").innerHTML =
+                    '<ul class="errorlist"><li>Enter valid card number.</li></ul>';
+                    flag2=1;
+
+            } else {
+                document.getElementById("error-card").innerHTML =
+                    '';
+                    flag2=0;
             }
-           
-            
-            
+            console.log(cvv1.value.length != 3);
+            if (cvv1.value.length != 3) {
+                document.getElementById("error-cvv").innerHTML =
+                    '<ul class="errorlist"><li>Enter valid CVV number.</li></ul>';
+                    flag3=1;
+
+            } else {
+                document.getElementById("error-cvv").innerHTML =
+                    '';
+                    flag3=0;
+            }
+
+            if(!flag1 && !flag2 && !flag3) {
+            alert("Your card is now validated!");
+
+            window.location = "account.html"
+            }
+
+        }
+
+
+
     </script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
@@ -69,7 +97,7 @@
     <!-- Preloader - style you can find in spinners.css -->
     <div class="preloader">
         <svg class="circular" viewBox="25 25 50 50">
-			<circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
     </div>
     <!-- Main wrapper  -->
     <div id="main-wrapper">
@@ -83,7 +111,9 @@
                         <!-- <b><img src="static/images/logo.png" alt="homepage" class="dark-logo" /></b> -->
                         <!--End Logo icon -->
                         <!-- Logo text -->
-                        <span><img src="static/images/logo-text.png" alt="homepage" class="dark-logo" /></span>
+                        <span>
+                            <img src="static/images/logo-text.png" alt="homepage" class="dark-logo" />
+                        </span>
                     </a>
                 </div>
                 <!-- End Logo -->
@@ -91,10 +121,21 @@
                     <!-- toggle and nav items -->
                     <ul class="navbar-nav mr-auto mt-md-0">
                         <!-- This is  -->
-                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted  " href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
-                        <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-toggler hidden-md-up text-muted  " href="javascript:void(0)">
+                                <i class="mdi mdi-menu"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item m-l-10">
+                            <a class="nav-link sidebartoggler hidden-sm-down text-muted  " href="javascript:void(0)">
+                                <i class="ti-menu"></i>
+                            </a>
+                        </li>
                         <!-- Messages -->
-                        <li class="nav-item dropdown mega-dropdown"> <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-th-large"></i></a>
+                        <li class="nav-item dropdown mega-dropdown">
+                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-th-large"></i>
+                            </a>
                             <div class="dropdown-menu animated zoomIn">
                                 <ul class="mega-dropdown-menu row">
 
@@ -117,33 +158,78 @@
                                         <h4 class="m-b-20">List style</h4>
                                         <!-- List style -->
                                         <ul class="list-style-none">
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li class="col-lg-3 col-xlg-3 m-b-30">
                                         <h4 class="m-b-20">List style</h4>
                                         <!-- List style -->
                                         <ul class="list-style-none">
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
                                         </ul>
                                     </li>
                                     <li class="col-lg-3 col-xlg-3 m-b-30">
                                         <h4 class="m-b-20">List style</h4>
                                         <!-- List style -->
                                         <ul class="list-style-none">
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
-                                            <li><a href="javascript:void(0)"><i class="fa fa-check text-success"></i> This Is Another Link</a></li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="fa fa-check text-success"></i> This Is Another Link</a>
+                                            </li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -166,25 +252,47 @@
                     <ul id="sidebarnav">
                         <li class="nav-devider"></li>
                         <li class="nav-label">Home</li>
-                        <li> <a class="has-arrow  " href="#" aria-expanded="true"><i class="fa fa-shopping-bag"></i><span class="hide-menu">Shopping<span class="label label-rouded label-primary pull-right">1</span></span></a>
+                        <li>
+                            <a class="has-arrow  " href="#" aria-expanded="true">
+                                <i class="fa fa-shopping-bag"></i>
+                                <span class="hide-menu">Shopping
+                                    <span class="label label-rouded label-primary pull-right">1</span>
+                                </span>
+                            </a>
                             <ul aria-expanded="true" class="collapse">
-                                <li><a href="/dashboard">Browse Products</a></li>
-                            </ul>
-                        </li>                        
-                      
-                        <li class="nav-label">Dashboard</li>
-                        
-                        <li> <a class="has-arrow  " href="#" aria-expanded="true"><i class="fa fa-tachometer"></i><span class="hide-menu">My Account<span class="label label-rouded label-primary pull-right">4</span></span></a>
-                            <ul aria-expanded="true" class="collapse">
-                                <li><a href="/account">Account </a></li>
-                                <li><a href="/transfer">Transfer</a></li>
-                                <li><a href="/shopping-cart">Shopping Cart</a></li>
-                                <li><a href="/transcations">Transcation History</a></li>
+                                <li>
+                                    <a href="/dashboard">Browse Products</a>
+                                </li>
                             </ul>
                         </li>
-                        
 
-                      
+                        <li class="nav-label">Dashboard</li>
+
+                        <li>
+                            <a class="has-arrow  " href="#" aria-expanded="true">
+                                <i class="fa fa-tachometer"></i>
+                                <span class="hide-menu">My Account
+                                    <span class="label label-rouded label-primary pull-right">4</span>
+                                </span>
+                            </a>
+                            <ul aria-expanded="true" class="collapse">
+                                <li>
+                                    <a href="/account">Account </a>
+                                </li>
+                                <li>
+                                    <a href="/transfer">Transfer</a>
+                                </li>
+                                <li>
+                                    <a href="/shopping-cart">Shopping Cart</a>
+                                </li>
+                                <li>
+                                    <a href="/transcations">Transcation History</a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+
                 </nav>
                 <!-- End Sidebar navigation -->
             </div>
@@ -196,135 +304,137 @@
             <!-- Bread crumb -->
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-primary">Link Credit Card </h3> </div>
+                    <h3 class="text-primary">Link Credit Card </h3>
+                </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                        <li class="breadcrumb-item">
+                            <a href="javascript:void(0)">Home</a>
+                        </li>
                         <li class="breadcrumb-item active">Backend</li>
                     </ol>
                 </div>
             </div>
             <!-- End Bread crumb -->
             <!-- Container fluid  -->
-             
 
 
-<div class="container-fluid">
-    <div class ="row">
-        <div class="col-lg-8">
-            <div class = "card">
-            <h4 class="card-title">Enter Details</h4>                      
-                        <form action="#" onsubmit="return false">
 
-                        <input type='hidden' name='csrfmiddlewaretoken' value='CpKyqb3tqfUmeqIyXEilOBfb6PDQfZrgUD1wlLSlyXXg8p3jnWBJIOZ9gvQjwKuL' />
-             
-                        <input type='hidden' name='csrfmiddlewaretoken' value='CpKyqb3tqfUmeqIyXEilOBfb6PDQfZrgUD1wlLSlyXXg8p3jnWBJIOZ9gvQjwKuL' />
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="card">
+                            <h4 class="card-title">Enter Details</h4>
+                            <form action="#" onsubmit="return false">
+
+                                <input type='hidden' name='csrfmiddlewaretoken' value='CpKyqb3tqfUmeqIyXEilOBfb6PDQfZrgUD1wlLSlyXXg8p3jnWBJIOZ9gvQjwKuL'
+                                />
+
+                                <input type='hidden' name='csrfmiddlewaretoken' value='CpKyqb3tqfUmeqIyXEilOBfb6PDQfZrgUD1wlLSlyXXg8p3jnWBJIOZ9gvQjwKuL'
+                                />
+
+
+                                <div class="form-group has-errors text-danger small">
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-sm-10 control-label">Owner</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="owner" autocomplete="off" class="form-control" maxlength="100" id="owner" required />
+                                    </div>
+                                </div>
+
+                                <div id="error-name" class="form-group has-errors text-danger small">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label class="col-sm-10 control-label">Card Number</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" name="number" autocomplete="off" class="form-control" maxlength="16" id="cardNumber" required />
+                                    </div>
+                                </div>
+                                <div id="error-card" class="form-group has-errors text-danger small">
+                                </div>
                         
-                        
-                        <div class="form-group has-errors text-danger small">
-                            
-                        </div>
-                        <div class="form-group has-errors text-danger small">
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-10 control-label">Owner</label>
-                            <div class="col-sm-10">  
-                                 <input type="text" name="owner" autocomplete="off" class="form-control" maxlength="100" required id="owner" />
-                             </div>
-                        </div>
-                        
-                        <div class="form-group has-errors text-danger small">
-                            
-                        </div>
-                        <div class="form-group has-errors text-danger small">
-                        </div>
                         <div class="form-group">
                             <label class="col-sm-10 control-label">CVV</label>
-                            <div class="col-sm-10">  
-                                 <input type="password" name="cvv" autocomplete="off" class="form-control" maxlength="3" required id="cvv" />
-                             </div>
+                            <div class="col-sm-10">
+                                <input type="password" name="input_cvv" autocomplete="off" class="form-control" maxlength="3" id="cvv" required />
+                            </div>
                         </div>
-                        
-                        <div class="form-group has-errors text-danger small">
+                        <div id="error-cvv" class="form-group has-errors text-danger small">
                             
-                        </div>
-                        <div class="form-group has-errors text-danger small">
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-10 control-label">Card Number</label>
-                            <div class="col-sm-10">  
-                                 <input type="text" name="number" autocomplete="off" class="form-control" maxlength="16" required id="cardNumber" />
-                             </div>
-                        </div>
-                        
-                        <div class="form-group has-errors text-danger small">
-                            
-                        </div>
-                        <div class="form-group has-errors text-danger small">
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-10 control-label">Expiry Date</label>
-                            <div class="col-sm-10">  
-                                 <input type="text" name="exp_date" autocomplete="off" class="form-control" maxlength="6" required id="id_exp_date" />
-                             </div>
-                        </div>
-                        
-                        <button class="btn btn-success" style="width:100%" onclick="validate1()">Link</button>
-                                            
-                        
-                    </form>
 
-                               
-        
+                       </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-10 control-label">Expiry Date</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="exp_date" autocomplete="off" class="form-control" maxlength="6" id="id_exp_date" required />
+                                </div>
+                            </div>
+
+                            <button class="btn btn-success" style="width:100%" onclick="validate1()">Submit</button>
+
+
+                            </form>
+                        </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- End Container fluid  -->
+                <!-- footer -->
+                <footer class="footer"> © 2018 All rights reserved. Template designed by
+                    <a href="https://colorlib.com">Colorlib</a>
+                </footer>
+                <!-- End footer -->
+            </div>
+            <!-- End Page wrapper  -->
         </div>
-        </div>
-    </div>
-       
-
-            <!-- End Container fluid  -->
-            <!-- footer -->
-            <footer class="footer"> © 2018 All rights reserved. Template designed by <a href="https://colorlib.com">Colorlib</a></footer>
-            <!-- End footer -->
-        </div>
-        <!-- End Page wrapper  -->
-    </div>
-    <!-- End Wrapper -->
-    <!-- All Jquery -->
-    <script src="static/js/lib/jquery/jquery.min.js"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="static/js/lib/bootstrap/js/popper.min.js"></script>
-    <script src="static/js/lib/bootstrap/js/bootstrap.min.js"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="static/js/jquery.slimscroll.js"></script>
-    <!--Menu sidebar -->
-    <script src="static/js/sidebarmenu.js"></script>
-    <!--stickey kit -->
-    <script src="static/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
-    <!--Custom JavaScript -->
+        <!-- End Wrapper -->
+        <!-- All Jquery -->
+        <script src="static/js/lib/jquery/jquery.min.js"></script>
+        <!-- Bootstrap tether Core JavaScript -->
+        <script src="static/js/lib/bootstrap/js/popper.min.js"></script>
+        <script src="static/js/lib/bootstrap/js/bootstrap.min.js"></script>
+        <!-- slimscrollbar scrollbar JavaScript -->
+        <script src="static/js/jquery.slimscroll.js"></script>
+        <!--Menu sidebar -->
+        <script src="static/js/sidebarmenu.js"></script>
+        <!--stickey kit -->
+        <script src="static/js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
+        <!--Custom JavaScript -->
 
 
-    <!-- Amchart -->
-     <script src="static/js/lib/morris-chart/raphael-min.js"></script>
-    <script src="static/js/lib/morris-chart/morris.js"></script>
-    <script src="static/js/lib/morris-chart/dashboard1-init.js"></script>
+        <!-- Amchart -->
+        <script src="static/js/lib/morris-chart/raphael-min.js"></script>
+        <script src="static/js/lib/morris-chart/morris.js"></script>
+        <script src="static/js/lib/morris-chart/dashboard1-init.js"></script>
 
 
-	<script src="static/js/lib/calendar-2/moment.latest.min.js"></script>
-    <!-- scripit init-->
-    <script src="static/js/lib/calendar-2/semantic.ui.min.js"></script>
-    <!-- scripit init-->
-    <script src="static/js/lib/calendar-2/prism.min.js"></script>
-    <!-- scripit init-->
-    <script src="static/js/lib/calendar-2/pignose.calendar.min.js"></script>
-    <!-- scripit init-->
-    <script src="static/js/lib/calendar-2/pignose.init.js"></script>
+        <script src="static/js/lib/calendar-2/moment.latest.min.js"></script>
+        <!-- scripit init-->
+        <script src="static/js/lib/calendar-2/semantic.ui.min.js"></script>
+        <!-- scripit init-->
+        <script src="static/js/lib/calendar-2/prism.min.js"></script>
+        <!-- scripit init-->
+        <script src="static/js/lib/calendar-2/pignose.calendar.min.js"></script>
+        <!-- scripit init-->
+        <script src="static/js/lib/calendar-2/pignose.init.js"></script>
 
-    <script src="static/js/lib/owl-carousel/owl.carousel.min.js"></script>
-    <script src="static/js/lib/owl-carousel/owl.carousel-init.js"></script>
-    <script src="static/js/scripts.js"></script>
-    <!-- scripit init-->
+        <script src="static/js/lib/owl-carousel/owl.carousel.min.js"></script>
+        <script src="static/js/lib/owl-carousel/owl.carousel-init.js"></script>
+        <script src="static/js/scripts.js"></script>
+        <!-- scripit init-->
 
-    <script src="static/js/custom.min.js"></script>
+        <script src="static/js/custom.min.js"></script>
 
 </body>
 
