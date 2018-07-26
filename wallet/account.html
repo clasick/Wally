@@ -11,6 +11,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="icon" type="image/png" sizes="16x16" href="static/images/favicon.png">
     <title>Account Details  - Wally</title>
     <!-- Bootstrap Core CSS -->
@@ -91,7 +94,7 @@ Details </h3> </div>
                                 <img alt="..." src="static/images/twitter-avatar.png" class="media-object">
                             </a>
                         </div>
-                        <div class="media-body">
+                        <!-- <div class="media-body">
                             <h4 class="media-heading">User</h4>
                                 <p>Koushik M </p>
                             <h5 class="media-heading">Full Name</h5>
@@ -100,10 +103,35 @@ Details </h3> </div>
                                 <p>koushik241998@gmail.com</p>
                             <h5 class="media-heading">Phone Number</h5>
                                 <p>9487252289</p>    
+                        </div> -->
+                        <div class="container">
+                                <table class="table table-hover">
+                                        <thead>
+                                          <tr>
+                                            <th>Firstname</th>
+                                            <td>Koushik</td>
+                                          </tr>
+                                          <tr>
+                                                <th>Lastname</th>
+                                                <td>Mani</td>
+                                              </tr>
+                                              <tr>
+                                                    <th>Email</th>
+                                                    <td>koushik241998@gmail.com</td>
+                                                  </tr>
+                                                  <tr>
+                                                        <th>Phone number</th>
+                                                        <td>9487252289</td>
+                                                      </tr> 
+                                        </thead>
+                                       
+                                       
+                                      </table>
+                                
                         </div>
-                        
+                  
                 <!-- </div> -->
-                <!-- <a href="/edit-profile"><button type="button" class="btn btn-warning"><i class="fa fa-pencil-square-o"></i> Update Details</button></a> -->
+                <!-- <a href="/edit-profile"></a> -->
 
                 
                         </div>
@@ -112,30 +140,11 @@ Details </h3> </div>
             </div>
             
         </div>
-        <!-- <div class="col-lg-4">
-                <div class="card p-30">
-                        <div class="media">
-                        <div class="media-left meida media-middle">
-                        <span><i class="fa fa-inr f-s-40 color-primary"></i></span>
-                        </div>
-                        <div class="media-body media-text-right">
-                        <h2>0</h2>
-                        <p class="m-b-0">Account Balance</p>
-                        </div>
-                        </div>
-                </div>
-                </div> -->
-
+        
     </div>
 
-   
-    
-            <!-- End Container fluid  -->
-            <!-- footer -->
-            <footer class="footer"> © 2018 All rights reserved. Template designed by <a href="https://colorlib.com">Colorlib</a></footer>
-            <!-- End footer -->
+    <button type="button" class="btn btn-warning" onclick="alert('Will be redirected to an edit page.')"><i class="fa fa-pencil-square-o"></i> Update Details</button> 
         </div>
-        <!-- End Page wrapper  -->
     </div>
     <!-- End Wrapper -->
     <!-- All Jquery -->
