@@ -73,11 +73,25 @@
                     flag3=0;
             }
 
+  var inputText = document.getElementById("id_exp_date");
+  
+
+
+
+
+
+
+
+
+
             if(!flag1 && !flag2 && !flag3) {
             alert("Your card is now validated!");
 
             window.location = "account.html"
             }
+
+
+
 
         }
 
@@ -372,7 +386,7 @@
                             <div class="form-group">
                                 <label class="col-sm-10 control-label">Expiry Date</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="exp_date" autocomplete="off" class="form-control" maxlength="6" id="id_exp_date" required />
+                                    <input type="number" name="exp_date" autocomplete="off" class="form-control" maxlength="6" id="id_exp_date" required />
                                 </div>
                             </div>
 
